@@ -1,0 +1,19 @@
+services:
+  app:
+    # Constrói a imagem a partir do Dockerfile localizado no mesmo diretório
+    # que este arquivo docker-compose.yml.
+    build: .
+    container_name: api
+    ports:
+      # Mapeia a porta 8000 do seu computador (host) para a porta 8000 do contêiner,
+      # conforme definido no seu Dockerfile.
+      - "8000:8000"
+ 
+    volumes:
+      # Monta o diretório atual (código-fonte) dentro do contêiner em /app.
+      # Isso permite que as alterações no código sejam refletidas instantaneamente
+      # no contêiner, funcionando com a flag --reload do Uvicorn.
+      - .:/app
+    # Se sua aplicação precisar de variáveis de ambiente, descomente e adicione-as aqui.
+    # environment:
+    #   - NOME_DA_VARIAVEL=valor_da_variavel
